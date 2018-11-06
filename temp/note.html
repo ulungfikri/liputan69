@@ -1,0 +1,37 @@
+Berita 		: id, title, author, image, content, views, idkat
+
+Kategori 	: idkat, nama
+
+  
+			id
+			category
+			views
+			user_id
+
+
+ CREATE TABLE berita <_id PRIMARY KEY, title VARCHAR(25), author VARCHAR(25), image TEXT, content TEXT, views INTEGER, idkat INTEGER
+
+ CREATE TABLE BERITA(
+   ID INT PRIMARY KEY,
+   TITLE VARCHAR(25),
+   AUTHOR VARCHAR(25),
+   IMAGE TEXT,
+   CONTENT TEXT,
+   VIEWS INT,
+   IDKAT INT
+  );
+
+ CREATE TABLE KATEGORI(
+   IDKAT INT PRIMARY KEY,
+   NAMA VARCHAR(25)
+  );
+
+
+INSERT INTO BERITA VALUES (1, 'Finance Title', 'Ronaldo Vargas', 'Image', 'Content Finance Apa Yaa', 1, 3 );
+
+INSERT INTO BERITA VALUES (3, 'Finance Title Lagi dan Lagi', 'George Benson', 'Image', 'JAKARTA, iNews.id Nilai tukar rupiah terhadap dolar Amerika Serikat (AS) di pasar spot pada perdagangan Kamis (25/1/2018) kembali menguat.', 1, 3 );
+
+
+INSERT INTO KATEGORI VALUES (1, 'Techno');
+INSERT INTO KATEGORI VALUES (2, 'Sport');
+INSERT INTO KATEGORI VALUES (3, 'Finance');
