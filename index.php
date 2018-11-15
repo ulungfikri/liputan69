@@ -1,6 +1,7 @@
 <?php 
 
-require_once("koneksi.php");
+//require_once("koneksi.php");
+include_once('app-code.php');
 
 ?>
 
@@ -27,8 +28,6 @@ require_once("koneksi.php");
 
 <body>
     <!-- ##### Header Area Start ##### -->
-
-    <?php require_once("app-code.php"); ?>
     <header class="header-area">
 
         <!-- Top Header Area -->
@@ -194,5 +193,5 @@ require_once("koneksi.php");
     <!-- Active js -->
     <script src="js/active.js"></script>
 </body>
-<?php require_once("app-code2.php"); ?>
+//<?php require_once("app-code2.php"); ?>
 </html>
