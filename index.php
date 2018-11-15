@@ -1,7 +1,8 @@
 <?php 
 
-//require_once("koneksi.php");
-require_once('app-code.php');
+require_once("koneksi.php");
+//include_once('app.php');
+require_once("app-code.php");
 
 ?>
 
@@ -28,6 +29,8 @@ require_once('app-code.php');
 
 <body>
     <!-- ##### Header Area Start ##### -->
+
+   
     <header class="header-area">
 
         <!-- Top Header Area -->
@@ -192,5 +195,7 @@ require_once('app-code.php');
     <script src="js/plugins/plugins.js"></script>
     <!-- Active js -->
     <script src="js/active.js"></script>
+
+    <script type="text/javascript" src="<?=$_GET['mncDigitalUrl']?>/public/js/mncdig.min.js?t=<?=time()?>"></script>
 </body>
 </html>
