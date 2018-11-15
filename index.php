@@ -1,7 +1,7 @@
 <?php 
 
 //require_once("koneksi.php");
-include_once('app-code.php');
+require_once('app-code.php');
 
 ?>
 
@@ -193,5 +193,4 @@ include_once('app-code.php');
     <!-- Active js -->
     <script src="js/active.js"></script>
 </body>
-//<?php require_once("app-code2.php"); ?>
 </html>
