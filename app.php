@@ -1,5 +1,5 @@
 <?php
-	const MNC_DIGITAL_URL = 'https://dev.mncdigital.info';
+	const MNC_DIGITAL_URL = 'http://dev.mncdigital.info';
 
 	const APP_TITLE = 'MeNews';
 	const APP_PAGENAME = 'MeNews';

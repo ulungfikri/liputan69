@@ -7,8 +7,7 @@
     $(document).ready(function() {
         mncdigAuth('<?=$_GET['username']?>', '<?=$_GET['appClientKey']?>');
         if(debug)console.log('mncdigAuth username:','<?=$_GET['username']?>' + ' ck:' + '<?=$_GET['appClientKey']?>');
-        getRecommendationList();
-        getProf();
+
     })
 
     function getInfo(res) {
