@@ -1,7 +1,6 @@
 <div class="login d-flex">
 
-	<h4 align="center"><?=$_GET['userFullname']?></h4>
-	<h4 align="center"><?=$_GET['userEmail']?></h4>
+	<h1><a>Username &nbsp;<?=$_GET['userFullname']?></a></h1>
 
 	<button href="" onclick="mncdigRegister()" class="btn btn-danger"> Register</button>&nbsp;
 
