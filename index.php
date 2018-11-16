@@ -1,10 +1,4 @@
-<?php 
 
-// require_once("koneksi.php");
-
-require_once("app-code.php");
-
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -28,9 +22,17 @@ require_once("app-code.php");
 </head>
 
 <body>
+
+    <?php 
+
+// require_once("koneksi.php");
+
+    require_once("app-code.php");
+
+    ?>
     <!-- ##### Header Area Start ##### -->
 
-    
+
     <header class="header-area">
 
         <!-- Top Header Area -->
@@ -103,7 +105,7 @@ require_once("app-code.php");
     <!-- ##### Featured Post Area Start ##### -->
     <div class="featured-post-area">
 
-        
+
         <div class="container">
             <div class="row">
                 <div class="col-12 col-md-6 col-lg-8">
@@ -116,7 +118,7 @@ require_once("app-code.php");
                                     <a href="#"><img src="img/bg-img/16.jpg" alt=""></a>
                                 </div>
                                 <div class="post-data">
-                                    
+
                                     <a href="#" class="post-catagory">Finance</a>
                                     <a href="#" class="post-title">
                                         <!-- <h6>Financial news: A new company is born today at the stock market</h6> -->
@@ -196,27 +198,6 @@ require_once("app-code.php");
             mncdigAuth('<?=$_GET['username']?>', '<?=$_GET['appClientKey']?>');
         })
 
-        function getRecommendationList() {
-            var username = '<?=$_GET['username']?>';
-            if(username === '') {
-                alert('need login first');
-                return;
-            }
-            var xmlhttp =  new XMLHttpRequest();
-            xmlhttp.open('POST', '/recommlist.php', true);
-            xmlhttp.onreadystatechange = function() {
-                if(xmlhttp.readyState == 4) {
-                    if(xmlhttp.status != 200) {
-                        alert('Connection problem, please try again.');
-                        return;
-                    }
-                    console.log('responseText:', decodeURIComponent(xmlhttp.responseText));
-                }
-            }
-            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xmlhttp.send('username='+encodeURIComponent(username));
-        }
-
     </script>
     <!-- Popper js -->
     <script src="js/bootstrap/popper.min.js"></script>
@@ -227,6 +208,6 @@ require_once("app-code.php");
     <!-- Active js -->
     <script src="js/active.js"></script>
 
-    
+
 </body>
 </html>
