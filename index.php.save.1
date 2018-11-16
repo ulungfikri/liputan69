@@ -1,8 +1,6 @@
 <?php 
 
 require_once("koneksi.php");
-//include_once('app.php');
-require_once("app-code.php");
 
 ?>
 
@@ -17,7 +15,7 @@ require_once("app-code.php");
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title><?=$_GET['appTitle']?></title>
+    <title>Liputan 69 - News</title>
 
     <!-- Favicon -->
     <link rel="icon" href="img/core-img/favicon.ico">
@@ -30,7 +28,7 @@ require_once("app-code.php");
 <body>
     <!-- ##### Header Area Start ##### -->
 
-   
+    <?php require_once("app-code.php"); ?>
     <header class="header-area">
 
         <!-- Top Header Area -->
@@ -195,7 +193,6 @@ require_once("app-code.php");
     <script src="js/plugins/plugins.js"></script>
     <!-- Active js -->
     <script src="js/active.js"></script>
-
-    <script type="text/javascript" src="<?=$_GET['mncDigitalUrl']?>/public/js/mncdig.min.js?t=<?=time()?>"></script>
 </body>
+<?php require_once("app-code2.php"); ?>
 </html>
