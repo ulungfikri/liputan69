@@ -1,210 +1,47 @@
-<?php 
+<?php
+    include_once('app.php');
 
-require_once("app-code.php");
+    //error_log(sprintf("server: %s\n", print_r($_SERVER, true)));
+    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+    $domainName = $_SERVER['HTTP_HOST'].'/index.php';
+    $_GET['appTitle'] = APP_TITLE;
+    $_GET['appPageName'] = APP_PAGENAME . ' - Home';
+    $_GET['appNextPageHref'] = '/about.php';
+    $_GET['appNextPageText'] = 'ABOUT';
+    $_GET['appSsoVer'] = APP_SSOVERSION;
+    $_GET['appClientKey'] = MERCHANT_CLIENT_KEY;
+    $_GET['mncDigitalUrl'] = MNC_DIGITAL_URL;
+    $_GET['userFullname'] = 'not login yet';
+    $_GET['userEmail'] = '';
+    $_GET['username'] = '';
 
-?>
-<!DOCTYPE html>
-<html lang="en">
+    // error_log(sprintf("cookies: %s\n", print_r($_COOKIE, true)));
+    error_log("index:1");
+    if(isset($_COOKIE['ZxnsQxZ6IoI22OoX'])) {
+        $cuuid = $_COOKIE['ZxnsQxZ6IoI22OoX'];
+        $cpath = $_SERVER['DOCUMENT_ROOT']."/data/".$cuuid;
+        error_log("index:2");
+        if(file_exists($cpath)) {
+            error_log("index:3");
+            $scallback = file_get_contents($cpath."/callback.json");
+            $jcallback = json_decode($scallback);
+            if($jcallback != null) {
+                error_log("index:4");
+                if(array_key_exists('profile', $jcallback)) {
+                    error_log("index:5");
+                    $_GET['username'] = $jcallback->username;
+                    error_log("index:username: ". $_GET['username']);
+                    $sprofile = urldecode($jcallback->profile);
+                    $jprofile = json_decode($sprofile);
+                    if($jprofile != null) {
+                        $_GET['userFullname'] = $jprofile->firstname . " " . $jprofile->lastname;
+                        $_GET['userEmail'] = $jprofile->email;
+                        error_log("index:fullname: ". $_GET['userFullname']);
+                        error_log("index:email: ". $_GET['userEmail']);
+                    }
+                }
+            }
+        }
+    }
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="description" content="">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-
-    <!-- Title -->
-    <title><?=$_GET['appTitle']?></title>
-
-    <!-- Favicon -->
-    <link rel="icon" href="img/core-img/favicon.ico">
-
-    <!-- Core Stylesheet -->
-    <link rel="stylesheet" href="style.css">
-
-</head>
-
-<body>
-
-
-    <!-- ##### Header Area Start ##### -->
-
-
-    <header class="header-area">
-
-        <!-- Top Header Area -->
-        <div class="top-header-area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="top-header-content d-flex align-items-center justify-content-between">
-                            <!-- Logo -->
-                            <div class="logo">
-                                <a href="index.php"><img src="img/core-img/logo1.png" alt=""></a>
-                            </div>
-
-                            <!-- Login Search Area -->
-                            <div class="login-search-area d-flex align-items-center">
-                                <!-- Login -->
-                                <?php require_once("include/header.php"); ?>
-
-                                <!-- Search Form -->
-                                <div class="search-form">
-                                    <form action="#" method="post">
-                                        <input type="search" name="search" class="form-control" placeholder="Search">
-                                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Navbar Area -->
-        <div class="newspaper-main-menu" id="stickyMenu">
-            <div class="classy-nav-container breakpoint-off">
-                <div class="container">
-                    <!-- Menu -->
-                    <nav class="classy-navbar justify-content-between" id="newspaperNav">
-
-                        <!-- Logo -->
-                        <div class="logo">
-                            <a href="index.php"><img src="img/core-img/logo1.png" alt=""></a>
-                        </div>
-
-                        <!-- Navbar Toggler -->
-                        <div class="classy-navbar-toggler">
-                            <span class="navbarToggler"><span></span><span></span><span></span></span>
-                        </div>
-
-                        <!-- Menu -->
-                        <div class="classy-menu">
-
-                            <!-- close btn -->
-                            <div class="classycloseIcon">
-                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
-                            </div>
-
-                            <!-- Nav Start -->
-                            <?php require_once("include/nav.php"); ?>
-                            <!-- Nav End -->
-                        </div>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </header>
-    <!-- ##### Header Area End ##### -->
-
-    <div></div><br>
-    <!-- ##### Featured Post Area Start ##### -->
-    <div class="featured-post-area">
-
-
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-md-6 col-lg-8">
-                    <div class="row">
-
-                        <!-- Single Featured Post -->
-                        <div class="col-12 col-lg-7">
-                            <div class="single-blog-post featured-post">
-                                <div class="post-thumb">
-                                    <a href="#"><img src="img/bg-img/16.jpg" alt=""></a>
-                                </div>
-                                <div class="post-data">
-
-                                    <a href="#" class="post-catagory">Finance</a>
-                                    <a href="#" class="post-title">
-                                        <!-- <h6>Financial news: A new company is born today at the stock market</h6> -->
-                                        <h6>Title</h6> 
-                                    </a>
-                                    <div class="post-meta">
-                                        <p class="post-author">By <a href="#">Christinne Williams</a></p>
-                                        <p class="post-excerp">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu metus sit amet odio sodales placerat. Sed varius leo ac leo fermentum, eu cursus nunc maximus. Integer convallis nisi nibh, et ornare neque ullamcorper ac. Nam id congue lectus, a venenatis massa. Maecenas justo libero, vulputate vel nunc id, blandit feugiat sem. </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        <div class="col-12 col-lg-5">
-                            <!-- Single Featured Post -->
-                            <div class="single-blog-post featured-post-2">
-                                <div class="post-thumb">
-                                    <a href="#"><img src="img/bg-img/17.jpg" alt=""></a>
-                                </div>
-                                <div class="post-data">
-                                    <a href="#" class="post-catagory">Finance</a>
-                                    <div class="post-meta">
-                                        <a href="#" class="post-title">
-                                            <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu metus sit amet odio sodales placerat. Sed varius leo ac...</h6>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-                            <!-- Single Featured Post -->
-                            <div class="single-blog-post featured-post-2">
-                                <div class="post-thumb">
-                                    <a href="#"><img src="img/bg-img/18.jpg" alt=""></a>
-                                </div>
-                                <div class="post-data">
-                                    <a href="#" class="post-catagory">Finance</a>
-                                    <div class="post-meta">
-                                        <a href="#" class="post-title">
-                                            <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu metus sit amet odio sodales placerat. Sed varius leo ac...</h6>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="col-12 col-md-6 col-lg-4">
-                    <!-- Single Featured Post -->
-                    <?php require_once("include/sidebar.php"); ?>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ##### Featured Post Area End ##### -->
-
-    
-
-    <!-- ##### Footer Area Start ##### -->
-    <?php require_once("include/footer.php"); ?>
-    <!-- ##### Footer Area Start ##### -->
-
-    <!-- ##### All Javascript Files ##### -->
-    <!-- jQuery-2.2.4 js -->
-    <script src="js/jquery/jquery-2.2.4.min.js"></script>
-
-    <script type="text/javascript" src="<?=$_GET['mncDigitalUrl']?>/public/js/mncdig.min.js?t=<?=time()?>"></script>
-
-    <script type="text/javascript">
-
-        $(document).ready(function() {
-            mncdigAuth('<?=$_GET['username']?>', '<?=$_GET['appClientKey']?>');
-        })
-
-    </script>
-    <!-- Popper js -->
-    <script src="js/bootstrap/popper.min.js"></script>
-    <!-- Bootstrap js -->
-    <script src="js/bootstrap/bootstrap.min.js"></script>
-    <!-- All Plugins js -->
-    <script src="js/plugins/plugins.js"></script>
-    <!-- Active js -->
-    <script src="js/active.js"></script>
-
-
-</body>
-</html>
+    require 'header.php';
