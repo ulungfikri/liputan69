@@ -1,7 +1,7 @@
 <?php 
 
-require_once("koneksi.php");
-//include_once('app.php');
+// require_once("koneksi.php");
+
 require_once("app-code.php");
 
 ?>
@@ -30,7 +30,7 @@ require_once("app-code.php");
 <body>
     <!-- ##### Header Area Start ##### -->
 
-   
+    
     <header class="header-area">
 
         <!-- Top Header Area -->
@@ -187,6 +187,37 @@ require_once("app-code.php");
     <!-- ##### All Javascript Files ##### -->
     <!-- jQuery-2.2.4 js -->
     <script src="js/jquery/jquery-2.2.4.min.js"></script>
+
+    <script type="text/javascript" src="<?=$_GET['mncDigitalUrl']?>/public/js/mncdig.min.js?t=<?=time()?>"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+            mncdigAuth('<?=$_GET['username']?>', '<?=$_GET['appClientKey']?>');
+        })
+
+        function getRecommendationList() {
+            var username = '<?=$_GET['username']?>';
+            if(username === '') {
+                alert('need login first');
+                return;
+            }
+            var xmlhttp =  new XMLHttpRequest();
+            xmlhttp.open('POST', '/recommlist.php', true);
+            xmlhttp.onreadystatechange = function() {
+                if(xmlhttp.readyState == 4) {
+                    if(xmlhttp.status != 200) {
+                        alert('Connection problem, please try again.');
+                        return;
+                    }
+                    console.log('responseText:', decodeURIComponent(xmlhttp.responseText));
+                }
+            }
+            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlhttp.send('username='+encodeURIComponent(username));
+        }
+
+    </script>
     <!-- Popper js -->
     <script src="js/bootstrap/popper.min.js"></script>
     <!-- Bootstrap js -->
@@ -196,6 +227,6 @@ require_once("app-code.php");
     <!-- Active js -->
     <script src="js/active.js"></script>
 
-    <script type="text/javascript" src="<?=$_GET['mncDigitalUrl']?>/public/js/mncdig.min.js?t=<?=time()?>"></script>
+    
 </body>
 </html>
