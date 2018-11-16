@@ -1,7 +1,5 @@
 <?php 
 
-require_once("koneksi.php");
-//include_once('app.php');
 require_once("app-code.php");
 
 ?>
@@ -47,7 +45,16 @@ require_once("app-code.php");
                             <!-- Login Search Area -->
                             <div class="login-search-area d-flex align-items-center">
                                 <!-- Login -->
-                                <?php require_once("include/header.php"); ?>
+                                <div class="login d-flex">
+
+                                    <h1><a>Username &nbsp;<?=$_GET['userFullname']?></a></h1>
+
+                                    <button href="" onclick="mncdigRegister()" class="btn btn-danger"> Register</button>&nbsp;
+
+                                    <button href="" onclick="mncdigLogin('WAwLDt8cPUQ85204')" class="btn btn-danger"> Log in</button>&nbsp;
+
+                                    <button href="" onclick="mncdigLogout()" class="btn btn-danger"> Log out</button>&nbsp;
+                                </div>
 
                                 <!-- Search Form -->
                                 <div class="search-form">
@@ -187,6 +194,17 @@ require_once("app-code.php");
     <!-- ##### All Javascript Files ##### -->
     <!-- jQuery-2.2.4 js -->
     <script src="js/jquery/jquery-2.2.4.min.js"></script>
+
+    <script type="text/javascript" src="<?=$_GET['mncDigitalUrl']?>/public/js/mncdig.min.js?t=<?=time()?>"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+            mncdigAuth('<?=$_GET['username']?>', '<?=$_GET['appClientKey']?>');
+        })
+
+    </script>
+
     <!-- Popper js -->
     <script src="js/bootstrap/popper.min.js"></script>
     <!-- Bootstrap js -->
@@ -196,6 +214,5 @@ require_once("app-code.php");
     <!-- Active js -->
     <script src="js/active.js"></script>
 
-    <script type="text/javascript" src="<?=$_GET['mncDigitalUrl']?>/public/js/mncdig.min.js?t=<?=time()?>"></script>
 </body>
 </html>
