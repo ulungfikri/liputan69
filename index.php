@@ -195,7 +195,7 @@ require_once("app-code.php");
     <!-- jQuery-2.2.4 js -->
     <script src="js/jquery/jquery-2.2.4.min.js"></script>
 
-    <script type="text/javascript" src="<?=$_GET['mncDigitalUrl']?>/public/js/mncdig.min.js?t=<?=time()?>"></script>
+    <script type="text/javascript" src="<?=$_GET['mncDigitalUrl']?>/js/mncdig.min.js?t=<?=time()?>"></script>
 
     <script type="text/javascript">
 
